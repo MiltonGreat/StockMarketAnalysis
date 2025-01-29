@@ -1,61 +1,89 @@
 # S&P Composite Stock Market Analysis (1880-2024)
 
-## Overview
+### Overview
 
-This project analyzes the S&P Composite stock market data from 1880 to 2024. The primary focus is on cluster analysis and time series analysis to uncover patterns and trends in the data.
+This project analyzes the S&P Composite stock market data from 1871 to 2024. The primary focus is on:
 
-## Columns
+1. Time Series Analysis – Decomposing stock market data to identify trends, seasonality, and anomalies.
+2. Cluster Analysis – Identifying distinct stock market behavior patterns and anomalies.
+3. Forecasting – Predicting future stock returns using various statistical and machine learning models.
 
-This data set consists of monthly stock price, dividends, and earnings data and interest rates and the consumer price index (to allow conversion to real values), starting January 1871. The columns included in this data set are as follows:
+### Dataset
 
-- Date
-- S&P Comp.
-- Dividend
-- Earnings
-- CPI
-- Long Interest Rate GS10
+The dataset consists of monthly stock price, dividends, earnings, interest rates, and the consumer price index (CPI). This allows for the conversion of stock prices to real values and long-term financial trend analysis.
+
+#### Columns in the Dataset:
+- Date – Timestamp of the record
+- SP500 – S&P Composite Index
+- Dividend – Monthly dividends paid
+- Earnings – Reported earnings per share
+- Consumer Price Index – Inflation measure
+- Long Interest Rate – 10-year government bond yield
+- Real Price – Inflation-adjusted stock price
+- Real Dividend – Inflation-adjusted dividends
+- Real Earnings – Inflation-adjusted earnings
+- PE10 – 10-year cyclically adjusted price-to-earnings ratio
+
+### Key Features of the Project
+
+1. Data Cleaning & Preprocessing
+- Converted the Date column to datetime format.
+- Forward-filled and backward-filled missing values.
+- Removed duplicate records and columns with all NaN values.
+
+2. Time Series Decomposition
+Used seasonal decomposition (seasonal_decompose) to break down the S&P 500 data into:
+- Trend – Long-term movement
+- Seasonal – Repetitive patterns
+- Residual – Random fluctuations
+
+3. Cluster Analysis for Anomalies
+
+Applied K-Means clustering to segment the stock market into different phases.
+
+Features used for clustering:
 - Real Price
 - Real Dividend
-- Real Total Return Price
-- Real Earnings
-- Real TR Scaled Earnings
-- CAPE
-- TR CAPE
-- Excess CAPE Yield
-- Monthly Total Bond Returns
-- Real Total Bond Returns
-- 10 Year Annualized Stock Real Return
-- 10 Year Annualized Bond Real Return
-- Real 10 Year Annualized Return
+- PE10
 
-## Contents
+4. Anomaly Detection
+- Used Isolation Forest to detect anomalies in stock prices.
 
-- Data Preprocessing: Steps taken to clean and prepare the data for analysis.
-- Exploratory Data Analysis (EDA): Initial exploration of the data to understand its structure and key characteristics.
-- Cluster Analysis: Application of clustering techniques (e.g., K-Means, DBSCAN) to identify distinct groups within the data.
-- Time Series Analysis: Analysis of the temporal aspects of the stock market data to identify trends, seasonality, and other time-related patterns.
-- Results and Visualizations: Presentation of the results with corresponding visualizations.
+5. Stock Market Forecasting
+- Applied Exponential Smoothing to predict future stock prices.
 
 ## Results
 
-- Cluster Analysis: The data was successfully segmented into 3 (up to 5) meaningful clusters, revealing distinct patterns in the stock market data.
-- Time Series Analysis: The time series analysis highlighted key trends and seasonal patterns in the S&P Composite over the analyzed period.
+![screenshot-localhost_8888-2025 01 29-09_26_54](https://github.com/user-attachments/assets/f7da6930-0fef-440b-ba3d-aedfa3be1ed5)
+
+- The decomposition revealed significant cyclical behavior in the stock market.
+- Several sharp declines correspond to known financial crises.
+- The clustering analysis identified at least 3 distinct market phases, each representing different stock market conditions (e.g., bull and bear markets).
+- Silhouette Score: 0.37 (indicating moderate cluster separation).
+- Key anomalies were detected in 1929 (Great Depression), 2008 (Financial Crisis), and recent market fluctuations (2020-2023). These anomalies align with significant economic events.
+- Forecasted Values for Next 12 Months: Predicted S&P 500 values showed an upward trend but with uncertainty.
+- Mean Absolute Error (MAE): 0.0324
+- Root Mean Squared Error (RMSE): 0.0506
+- R² Score: 0.0345 (indicating a weak predictive model)
 
 ## Key Takeaways
 
-- The cluster analysis shows there are a mininum of 3 (up to 5) clusters (also called: anomalies) to have happened from 1880 to 2024. 
-- The time series analysis shows at least 3 (up to 5) large drops in the stock market over the years.
-- I was unsuccessful in predicting future anomalies (all the models used had high MSE and MAE).
-- I was curious if I could predict future anomalies (stock market crashes) going to 2100, which does offer a valuable insight.
+- Time series analysis confirmed historical market trends and volatility.
+- Cluster analysis identified distinct stock market phases and anomalies.
+- Anomaly detection aligned with historical economic downturns.
+- Forecasting models had high error rates and need improvement.
+- The forecasting model was unable to accurately predict future stock price anomalies.
+- Alternative models such as ARIMA or LSTMs may provide better results.
   
 ## Future Work
 
-- Expand Analysis: Further analysis using additional financial indicators or a more granular time series analysis might work better.
-- Predictive Modeling: The predictive model to forecast future stock market trends did not work. Perhaps feature engineering might improve the performance, as I expect it should.
-- Comparison with Other Markets: I should compare the S&P Composite with other global markets, which may help with recognizing how their differences.
+- Improve Predictive Models: Feature engineering might enhance forecasting accuracy.
+- Exploring LSTM-based deep learning models could improve time series predictions.
+- Compare Global Markets: Compare S&P Composite trends with European, Asian, and emerging markets.
+- Refine Clustering Analysis: Test alternative clustering methods like DBSCAN for better anomaly detection.
 
-## Contributing
+## Source
 
-Nobel laureate Robert Shiller has made available a dataset that includes long-term U.S. stock market data, going back to the 1870s. This data includes the S&P 500 index, dividends, and interest rates, which are useful for analyzing long-term market trends.
+Nobel laureate Robert Shiller has made available a dataset that includes long-term U.S. stock market data. This dataset includes the S&P 500 index, dividends, and interest rates.
 
 The data is freely available on Robert Shiller’s website and is often used in academic research. You can access it here: https://shillerdata.com/
