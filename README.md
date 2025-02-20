@@ -8,6 +8,8 @@ This project analyzes the S&P Composite stock market data from 1871 to 2024. The
 2. Cluster Analysis – Identifying distinct stock market behavior patterns and anomalies.
 3. Forecasting – Predicting future stock returns using various statistical and machine learning models.
 
+The goal is to explore long-term trends in stock market behavior, detect market phases, identify anomalies tied to significant financial events, and forecast future stock prices.
+
 ### Dataset
 
 The dataset consists of monthly stock price, dividends, earnings, interest rates, and the consumer price index (CPI). This allows for the conversion of stock prices to real values and long-term financial trend analysis.
@@ -56,24 +58,29 @@ Features used for clustering:
 
 ![screenshot-localhost_8888-2025 01 29-09_26_54](https://github.com/user-attachments/assets/f7da6930-0fef-440b-ba3d-aedfa3be1ed5)
 
+#### Time Series Decomposition:
 - The decomposition revealed significant cyclical behavior in the stock market.
-- Several sharp declines correspond to known financial crises.
-- The clustering analysis identified at least 3 distinct market phases, each representing different stock market conditions (e.g., bull and bear markets).
-- Silhouette Score: 0.37 (indicating moderate cluster separation).
-- Key anomalies were detected in 1929 (Great Depression), 2008 (Financial Crisis), and recent market fluctuations (2020-2023). These anomalies align with significant economic events.
-- Forecasted Values for Next 12 Months: Predicted S&P 500 values showed an upward trend but with uncertainty.
-- Mean Absolute Error (MAE): 0.0324
-- Root Mean Squared Error (RMSE): 0.0506
-- R² Score: 0.0345 (indicating a weak predictive model)
+- Sharp declines observed in the data correspond to known financial crises.
+
+#### Cluster Analysis:
+- Identified 3 distinct market phases, each representing different stock market conditions (e.g., bull and bear markets).
+- The Silhouette Score of 0.37 suggests moderate separation between clusters.
+
+#### Anomaly Detection:
+- Key anomalies were detected in 1929 (Great Depression), 2008 (Financial Crisis), and 2020-2023 (COVID-19 market fluctuations).
+- These anomalies correspond to significant historical economic downturns.
+
+#### Forecasting:
+- The forecasted S&P 500 values showed an upward trend for the next 12 months but with high uncertainty.
+- Model performance: Mean Absolute Error (MAE): 0.0324, Root Mean Squared Error (RMSE): 0.0506, R² Score: 0.0345 (indicating a weak predictive model)
 
 ## Key Takeaways
 
-- Time series analysis confirmed historical market trends and volatility.
-- Cluster analysis identified distinct stock market phases and anomalies.
-- Anomaly detection aligned with historical economic downturns.
-- Forecasting models had high error rates and need improvement.
-- The forecasting model was unable to accurately predict future stock price anomalies.
-- Alternative models such as ARIMA or LSTMs may provide better results.
+- Time Series Analysis confirmed the presence of long-term trends and cyclical volatility in the stock market.
+- Cluster Analysis identified distinct market phases, helping to characterize different economic periods.
+- Anomaly Detection was effective in aligning stock price anomalies with major historical economic events.
+- The Forecasting Model showed significant room for improvement, with high error rates indicating that more advanced techniques may be needed to improve predictions.
+- Alternative models, such as ARIMA or Long Short-Term Memory Networks (LSTMs), could provide better results in capturing complex temporal patterns and stock market behavior.
   
 ## Future Work
 
